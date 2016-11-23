@@ -8,10 +8,8 @@ done
 
 $VAULT_ENTRYPOINT "$@" &
 
-until $(curl --output /dev/null --silent --head --fail ${VAULT_ADDR}/sys/seal-status); do
+until $(curl --output /dev/null --silent --fail -X PUT ${VAULT_ADDR}/sys/unseal?key=${UNSEAL_KEY}); do
   sleep 1
 done
-
-curl -X PUT "${VAULT_ADDR}/sys/unseal?key=${UNSEAL_KEY}"
 
 wait $!
