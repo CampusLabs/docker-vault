@@ -1,4 +1,4 @@
-FROM vault:0.6.2
+FROM vault:0.7.0
 
 RUN apk add --no-cache curl
 COPY load.sh /usr/local/bin/load
